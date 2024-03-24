@@ -4,7 +4,7 @@
 
 - Misturar e Separar o Dataframe ( 80/20 = Treino e Teste )
 
-- Fazer função de que calcula a distância euclidiana ( com pontos de 4 dimensões ) de todos os pontos em relação a **X** ( de 4 dimensões )
+- Fazer função da distância euclidiana ( com 4 dimensões ) de todos os pontos em relação a **X**
 
 - Receber entrada do valor de **K** desejado ( 1,3,5,7 )
 
