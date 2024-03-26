@@ -24,3 +24,4 @@ def distanciaEuclidiana (linha1, linha2):
     return math.sqrt(sl + sw + pl + pw)
 
 print(df_test)
+print("penis")
