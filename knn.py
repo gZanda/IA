@@ -9,8 +9,8 @@ df = pd.read_csv("iris.csv")
 df_shuffled = df.sample(frac=1).reset_index(drop=True)
 
 # 2. Split the dataframe into training and testing data ( 80/20 )
-df_train = df_shuffled.iloc[0:120]
-df_test = df_shuffled.iloc[120:]
+df_train = df_shuffled[0:120].copy()
+df_test = df_shuffled[120:].copy()
 
 df_test["Species"] = pd.NA # Clean last column
 
@@ -24,4 +24,3 @@ def distanciaEuclidiana (linha1, linha2):
     return math.sqrt(sl + sw + pl + pw)
 
 print(df_test)
-print("penis")
