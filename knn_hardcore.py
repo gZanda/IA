@@ -57,3 +57,4 @@ df_test['Predicted_Species'] = species_predictions
 
 # 5. Display classification results
 print(df_test)
+print("Accuracy:", (df_test['Species'] == df_test['Predicted_Species']).mean())

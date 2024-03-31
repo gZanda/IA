@@ -32,13 +32,9 @@ knn.fit(X_train, y_train)
 # Predict the species on the testing data
 y_pred = knn.predict(X_test)
 
-# Calculate the accuracy of the model
-accuracy = accuracy_score(y_test, y_pred)
-print("Accuracy:", accuracy)
-
 # Add predictions to a new column in the test DataFrame
 df_test['Predicted_Species'] = y_pred
 
 # Print the entire test DataFrame with predictions
 print(df_test)
-print("Accuracy:", accuracy)
+print("Accuracy:", (df_test['Species'] == df_test['Predicted_Species']).mean())
