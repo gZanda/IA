@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import math
 
-df = pd.read_csv("iris.csv")
+df = pd.read_csv("iris_menor.csv")
 
 # ------ Functions ------ #
 
@@ -41,8 +41,8 @@ np.random.seed(SEED)
 df_shuffled = df.sample(frac=1 , random_state=SEED).reset_index(drop=True)
 
 # 2. Split the dataframe into training and testing data ( 80/20 )
-df_train = df_shuffled[0:120].copy()
-df_test = df_shuffled[120:].copy()
+df_train = df_shuffled[0:5].copy()
+df_test = df_shuffled[5:].copy()
 
 df_test = df_test.drop(columns=['Species'])
 
@@ -58,4 +58,4 @@ species_predictions = classify_species(df_train, nearest_neighbors_list)
 df_test['Predicted_Species'] = species_predictions
 
 # 5. Display classification results
-print(df_test)
+# print(df_test)
