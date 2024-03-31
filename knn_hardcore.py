@@ -63,21 +63,25 @@ def main_algorithm():
     species_predictions = classify_species(df_train, nearest_neighbors_list)
     df_test['Predicted_Species'] = species_predictions
 
-    # 6. Display prediction results
-    print(df_test)
-
     # 7. Precision Metrics ( Confusion Matrix, Accuracy, Precision, Recall )
     true_labels = df_test['Species']
     predicted_labels = df_test['Predicted_Species']
     cm = confusion_matrix(true_labels, predicted_labels)
     cm_df = pd.DataFrame(cm, index=df['Species'].unique(), columns=df['Species'].unique())
 
-    print("Accuracy:", accuracy_score(true_labels, predicted_labels))
-    print("Precision for each class:", precision_score(true_labels, predicted_labels, average='weighted'))
-    print("Recall for each class:", recall_score(true_labels, predicted_labels, average='weighted'))
+    # 6. Display prediction results
+    with open('results.txt', 'w') as r:
+        selected_columns = df_test[['Id', 'Species', 'Predicted_Species']]
+        print("Classification: \n",file=r)
+        print(selected_columns,file=r)
 
-    print("Confusion Matrix:")
-    print(cm_df)
+        print("\nPrecision Metrics: \n",file=r)
+        print("Accuracy:", accuracy_score(true_labels, predicted_labels),file=r)
+        print("Precision for each class:", precision_score(true_labels, predicted_labels, average='weighted'),file=r)
+        print("Recall for each class:", recall_score(true_labels, predicted_labels, average='weighted'),file=r)
+
+        print("\nConfusion Matrix: \n",file=r)
+        print(cm_df,file=r)
 
 # ------ Performance Metrics ------ #
     
@@ -87,9 +91,13 @@ start_time = time.time()
 mem_usage = memory_usage(proc=main_algorithm)
 peak_mem = max(mem_usage)
 peak_mem_mb = round(peak_mem / 1024, 2)  # Convert from MiB to MB
-print("Peak memory usage:", peak_mem_mb, "MB")
 
 # Execution time
 end_time = time.time()
 execution_time = end_time - start_time
-print("Execution time:", execution_time, "seconds")
+
+# Write to result file
+with open('results.txt', 'a') as r:
+    print("\nPerformance Metrics: \n",file=r)
+    print("Peak memory usage:", peak_mem_mb, "MB",file=r)
+    print("Execution time:", execution_time, "seconds",file=r)
