@@ -47,7 +47,7 @@ df_test = df_shuffled[5:].copy()
 df_test = df_test.drop(columns=['Species'])
 
 # 3. Find the k-nearest neighbors
-k = 2
+k = 3
 nearest_neighbors_list = []
 for _, test_row in df_test.iterrows():
     neighbors = k_nearest_neighbors(df_train, test_row, k)
@@ -58,4 +58,8 @@ species_predictions = classify_species(df_train, nearest_neighbors_list)
 df_test['Predicted_Species'] = species_predictions
 
 # 5. Display classification results
-# print(df_test)
+print(df_train)
+print(" ")
+print(nearest_neighbors_list)
+print(" ")
+print(df_test)
