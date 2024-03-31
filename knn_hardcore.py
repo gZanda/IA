@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import math
 from sklearn.metrics import confusion_matrix
+from sklearn.metrics import accuracy_score, precision_score, recall_score
 
 df = pd.read_csv("iris.csv")
 
@@ -59,13 +60,26 @@ df_test['Predicted_Species'] = species_predictions
 
 # 5. Display classification results
 print(df_test)
-print("Accuracy:", (df_test['Species'] == df_test['Predicted_Species']).mean())
 
 # 6. Confusion Matrix
 true_labels = df_test['Species']
 predicted_labels = df_test['Predicted_Species']
 cm = confusion_matrix(true_labels, predicted_labels)
 cm_df = pd.DataFrame(cm, index=df['Species'].unique(), columns=df['Species'].unique())
+
+# 7. Other Metrics
+
+# Calculate accuracy
+accuracy = accuracy_score(true_labels, predicted_labels)
+print("Accuracy:", accuracy)
+
+# Calculate precision for each class
+overall_precision = precision_score(true_labels, predicted_labels, average='weighted')
+print("Precision for each class:", overall_precision)
+
+# Calculate recall for each class
+overall_recall = recall_score(true_labels, predicted_labels, average='weighted')
+print("Recall for each class:", overall_recall)
 
 print("Confusion Matrix:")
 print(cm_df)

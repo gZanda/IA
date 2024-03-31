@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix
+from sklearn.metrics import accuracy_score, precision_score, recall_score
 
 # Load the CSV data into a DataFrame
 df = pd.read_csv('iris.csv')
@@ -38,7 +39,9 @@ df_test['Predicted_Species'] = y_pred
 
 # Print the entire test DataFrame with predictions
 print(df_test)
-print("Accuracy:", (df_test['Species'] == df_test['Predicted_Species']).mean())
+print("Accuracy:",accuracy_score(y_test, y_pred))
+print("Precision:",precision_score(y_test, y_pred, average='weighted'))
+print("Recall:",recall_score(y_test, y_pred, average='weighted'))
 
 # 6. Confusion Matrix
 true_labels = df_test['Species']
