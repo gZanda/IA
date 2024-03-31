@@ -2,6 +2,10 @@ import numpy as np
 import pandas as pd
 import math
 
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+
 df = pd.read_csv("iris.csv")
 
 # ------ Functions ------ #
@@ -43,8 +47,6 @@ df_shuffled = df.sample(frac=1 , random_state=SEED).reset_index(drop=True)
 # 2. Split the dataframe into training and testing data ( 80/20 )
 df_train = df_shuffled[0:120].copy()
 df_test = df_shuffled[120:].copy()
-
-df_test = df_test.drop(columns=['Species'])
 
 # 3. Find the k-nearest neighbors
 k = 2
