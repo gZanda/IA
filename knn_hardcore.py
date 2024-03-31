@@ -47,7 +47,7 @@ def main_algorithm():
     np.random.seed(SEED)
     df_shuffled = df.sample(frac=1 , random_state=SEED).reset_index(drop=True)
 
-    # 3. Split the dataframe into training and testing data ( 80/20 )
+    # 3. Split into training and testing ( 80/20 )
     df_train = df_shuffled[0:120].copy()
     df_test = df_shuffled[120:].copy()
 
@@ -59,27 +59,22 @@ def main_algorithm():
         neighbors = k_nearest_neighbors(df_train, test_row, k)
         nearest_neighbors_list.append(neighbors)
 
-    # 5. Classify the TEST species 
+    # 5. Predict the TEST species 
     species_predictions = classify_species(df_train, nearest_neighbors_list)
     df_test['Predicted_Species'] = species_predictions
 
-    # 6. Display classification results
+    # 6. Display prediction results
     print(df_test)
 
-    # 7. Performance Metrics ( Confusion Matrix, Accuracy, Precision, Recall )
+    # 7. Precision Metrics ( Confusion Matrix, Accuracy, Precision, Recall )
     true_labels = df_test['Species']
     predicted_labels = df_test['Predicted_Species']
     cm = confusion_matrix(true_labels, predicted_labels)
     cm_df = pd.DataFrame(cm, index=df['Species'].unique(), columns=df['Species'].unique())
 
-    accuracy = accuracy_score(true_labels, predicted_labels)
-    print("Accuracy:", accuracy)
-
-    overall_precision = precision_score(true_labels, predicted_labels, average='weighted')
-    print("Precision for each class:", overall_precision)
-
-    overall_recall = recall_score(true_labels, predicted_labels, average='weighted')
-    print("Recall for each class:", overall_recall)
+    print("Accuracy:", accuracy_score(true_labels, predicted_labels))
+    print("Precision for each class:", precision_score(true_labels, predicted_labels, average='weighted'))
+    print("Recall for each class:", recall_score(true_labels, predicted_labels, average='weighted'))
 
     print("Confusion Matrix:")
     print(cm_df)

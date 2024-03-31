@@ -8,40 +8,40 @@ from memory_profiler import memory_usage
 
 def main_algorithm():
 
-    # Load the CSV data into a DataFrame
+    # Load the CSV
     df = pd.read_csv('iris.csv')
 
-    # Shuffle the DataFrame using a fixed seed
+    # Shuffle using a fixed seed
     SEED = 654
     np.random.seed(SEED)
     df_shuffled = df.sample(frac=1, random_state=SEED).reset_index(drop=True)
 
-    # Split the shuffled DataFrame into training and testing data (80/20)
+    # Split (80/20)
     df_train = df_shuffled.iloc[:120].copy()
     df_test = df_shuffled.iloc[120:].copy()
 
-    # Separate features and target variable for training data
+    # Feeatures / Target for TRAIN
     X_train = df_train[['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm']]
     y_train = df_train['Species']
 
-    # Separate features and target variable for testing data
+    # Features / Target for TEST
     X_test = df_test[['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm']]
     y_test = df_test['Species']
 
-    # Initialize the KNN classifier
-    k = input("Enter the number of neighbors (1,3,5,7): ")
-    knn = KNeighborsClassifier( n_neighbors=3 )
+    # Initialize with k 
+    k = int(input("Enter the number of neighbors (1,3,5,7): "))
+    knn = KNeighborsClassifier( n_neighbors=k )
 
-    # Train the classifier on the training data
+    # Train
     knn.fit(X_train, y_train)
 
-    # Predict the species on the testing data
+    # Predict
     y_pred = knn.predict(X_test)
 
-    # Add predictions to a new column in the test DataFrame
+    # Add predictions to a new column 
     df_test['Predicted_Species'] = y_pred
 
-    # Print the entire test DataFrame with predictions
+    # Results and Precision Metrics
     print(df_test)
     print("Accuracy:",accuracy_score(y_test, y_pred))
     print("Precision:",precision_score(y_test, y_pred, average='weighted'))
