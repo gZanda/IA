@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import math
+from sklearn.metrics import confusion_matrix
 
 df = pd.read_csv("iris.csv")
 
@@ -45,7 +46,8 @@ df_train = df_shuffled[0:120].copy()
 df_test = df_shuffled[120:].copy()
 
 # 3. Find the k-nearest neighbors
-k = 2
+k = int(input("Enter the number of neighbors (1,3,5,7): "))
+
 nearest_neighbors_list = []
 for _, test_row in df_test.iterrows():
     neighbors = k_nearest_neighbors(df_train, test_row, k)
@@ -58,3 +60,12 @@ df_test['Predicted_Species'] = species_predictions
 # 5. Display classification results
 print(df_test)
 print("Accuracy:", (df_test['Species'] == df_test['Predicted_Species']).mean())
+
+# 6. Confusion Matrix
+true_labels = df_test['Species']
+predicted_labels = df_test['Predicted_Species']
+cm = confusion_matrix(true_labels, predicted_labels)
+cm_df = pd.DataFrame(cm, index=df['Species'].unique(), columns=df['Species'].unique())
+
+print("Confusion Matrix:")
+print(cm_df)

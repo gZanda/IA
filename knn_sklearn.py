@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix
 
 # Load the CSV data into a DataFrame
 df = pd.read_csv('iris.csv')
@@ -24,7 +24,8 @@ X_test = df_test[['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthC
 y_test = df_test['Species']
 
 # Initialize the KNN classifier
-knn = KNeighborsClassifier()
+k = input("Enter the number of neighbors (1,3,5,7): ")
+knn = KNeighborsClassifier( n_neighbors=3 )
 
 # Train the classifier on the training data
 knn.fit(X_train, y_train)
@@ -38,3 +39,12 @@ df_test['Predicted_Species'] = y_pred
 # Print the entire test DataFrame with predictions
 print(df_test)
 print("Accuracy:", (df_test['Species'] == df_test['Predicted_Species']).mean())
+
+# 6. Confusion Matrix
+true_labels = df_test['Species']
+predicted_labels = df_test['Predicted_Species']
+cm = confusion_matrix(true_labels, predicted_labels)
+cm_df = pd.DataFrame(cm, index=df['Species'].unique(), columns=df['Species'].unique())
+
+print("Confusion Matrix:")
+print(cm_df)
