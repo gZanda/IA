@@ -1,15 +1,23 @@
 # IA
 
-- Carregar o CSV para um Dataframe do Pandas
+- 1. Carregar o CSV para um Dataframe do Pandas
 
-- Misturar e Separar o Dataframe ( 80/20 = Treino e Teste )
+- 2. Misturar os dados usando uma SEED fixa
 
-- Fazer função da distância euclidiana ( com 4 dimensões ) de todos os pontos em relação a **X**
+- 3. Separar o Dataframe ( 80/20 = Treino e Teste )
 
-- Receber entrada do valor de **K** desejado ( 1,3,5,7 )
+- 4. Aplicar a função de Distância Euclidiana para calcular distâncias
 
-- Aplciar KNN 
+- 5. Classificar o dataframe de Teste de acordo com os "K" mais próximos
 
-- Matriz fazer de Confusão
+- 6. Exibir os dados classificados
 
-- Comparar com um KNN da Sklearn
+- 7. Calcular: Matriz de Confusão, Acurácia, Precisão, Revocação 
+
+- Bonus: Exibir os dados de Memória Máxima Utilizada e Tempo de Execução
+
+- 8. Classificar os **MESMOS** dados utilizando KNN da biblioteca sklearn
+
+- 9. Calcular suas métricas
+
+- 10. Comparar
