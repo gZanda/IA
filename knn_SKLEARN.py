@@ -25,3 +25,6 @@ y_pred = knn.predict(X_test)
 # Assessing model accuracy
 accuracy = accuracy_score(y_test, y_pred)
 print("Acurácia do modelo KNN:", accuracy)
+print("DATA FRAME X :", X)
+print("DATA FRAME X TESTE :", X_test)
+print("DATA FRAME X TREINO :", X_train)
