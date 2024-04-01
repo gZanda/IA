@@ -52,7 +52,7 @@ def main_algorithm():
     df_test = df_shuffled[120:].copy()
 
     # 4. Find the k-nearest neighbors
-    k = int(input("Enter the number of neighbors (1,3,5,7): "))
+    k = int(input("Enter the number of neighbors for the HARDCORE KNN (1,3,5,7): "))
 
     nearest_neighbors_list = []
     for _, test_row in df_test.iterrows():
@@ -71,16 +71,18 @@ def main_algorithm():
 
     # 6. Display prediction results
     with open('results.txt', 'w') as r:
+        print("** HARDCORE KNN ALGORITHM ** \n",file=r)
+
         selected_columns = df_test[['Id', 'Species', 'Predicted_Species']]
-        print("Classification: \n",file=r)
+        print("# ------ Classification ------# \n",file=r)
         print(selected_columns,file=r)
 
-        print("\nPrecision Metrics: \n",file=r)
+        print("\n# ------ Precision Metrics ------# \n",file=r)
         print("Accuracy:", accuracy_score(true_labels, predicted_labels),file=r)
-        print("Precision for each class:", precision_score(true_labels, predicted_labels, average='weighted'),file=r)
-        print("Recall for each class:", recall_score(true_labels, predicted_labels, average='weighted'),file=r)
+        print("Precision:", precision_score(true_labels, predicted_labels, average='weighted'),file=r)
+        print("Recall:", recall_score(true_labels, predicted_labels, average='weighted'),file=r)
 
-        print("\nConfusion Matrix: \n",file=r)
+        print("\n# ------ Confusion Matrix ------# \n",file=r)
         print(cm_df,file=r)
 
 # ------ Performance Metrics ------ #
@@ -98,6 +100,6 @@ execution_time = end_time - start_time
 
 # Write to result file
 with open('results.txt', 'a') as r:
-    print("\nPerformance Metrics: \n",file=r)
+    print("\n# ------ Performance Metrics ------# \n",file=r)
     print("Peak memory usage:", peak_mem_mb, "MB",file=r)
     print("Execution time:", execution_time, "seconds",file=r)
