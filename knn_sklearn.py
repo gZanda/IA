@@ -6,13 +6,13 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score
 import time
 from memory_profiler import memory_usage
 
-def main_algorithm():
+def main_algorithm(k_input):
 
     # Load the CSV
     df = pd.read_csv('iris.csv')
 
     # Shuffle using a fixed seed
-    SEED = 654
+    SEED = 123
     np.random.seed(SEED)
     df_shuffled = df.sample(frac=1, random_state=SEED).reset_index(drop=True)
 
@@ -29,7 +29,7 @@ def main_algorithm():
     y_test = df_test['Species']
 
     # Initialize with k 
-    k = int(input("Enter the number of neighbors for SKLEARN KNN (1,3,5,7): "))
+    k = k_input
     knn = KNeighborsClassifier( n_neighbors=k )
 
     # Train
@@ -65,20 +65,17 @@ def main_algorithm():
         print(cm_df,file=r)
 
 # ------ Performance Metrics ------ #
+        
+k = int(input("Enter the number of neighbors for SKLEARN KNN (1,3,5,7): "))
 
 start_time = time.time()
 
-# Peak memory usage
-mem_usage = memory_usage(proc=main_algorithm) # Runs the main code
-peak_mem = max(mem_usage)
-peak_mem_mb = round(peak_mem / 1024, 2)  # Convert from MiB to MB
+main_algorithm(k)
 
-# Execution time
 end_time = time.time()
 execution_time = end_time - start_time
 
 # Write performance metrics
 with open('results.txt', 'a') as r:
     print("\n# ------ Performance Metrics ------# \n",file=r)
-    print("Peak memory usage:", peak_mem_mb, "MB",file=r)
     print("Execution time:", execution_time, "seconds",file=r)

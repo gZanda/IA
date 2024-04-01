@@ -37,13 +37,13 @@ def classify_species(train_df, nearest_neighbors_list):
 
 # ------ Main Code ------ #
 
-def main_algorithm():
+def main_algorithm(k_input):
 
     # 1. Load the CSV data into a DataFrame
     df = pd.read_csv("iris.csv")
 
     # 2. Shuffle the dataframe usign a fixed seed
-    SEED = 654
+    SEED = 123
     np.random.seed(SEED)
     df_shuffled = df.sample(frac=1 , random_state=SEED).reset_index(drop=True)
 
@@ -52,7 +52,7 @@ def main_algorithm():
     df_test = df_shuffled[120:].copy()
 
     # 4. Find the k-nearest neighbors
-    k = int(input("Enter the number of neighbors for the HARDCORE KNN (1,3,5,7): "))
+    k = k_input
 
     nearest_neighbors_list = []
     for _, test_row in df_test.iterrows():
@@ -86,20 +86,17 @@ def main_algorithm():
         print(cm_df,file=r)
 
 # ------ Performance Metrics ------ #
+        
+k = int(input("Enter the number of neighbors for the HARDCORE KNN (1,3,5,7): "))
     
 start_time = time.time()
 
-# Peak memory usage
-mem_usage = memory_usage(proc=main_algorithm) # Runs the main code
-peak_mem = max(mem_usage)
-peak_mem_mb = round(peak_mem / 1024, 2)  # Convert from MiB to MB
+main_algorithm(k)
 
-# Execution time
 end_time = time.time()
 execution_time = end_time - start_time
 
 # Write to result file
 with open('results.txt', 'a') as r:
     print("\n# ------ Performance Metrics ------# \n",file=r)
-    print("Peak memory usage:", peak_mem_mb, "MB",file=r)
     print("Execution time:", execution_time, "seconds",file=r)
