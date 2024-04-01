@@ -46,7 +46,7 @@ def main_algorithm(k_input):
     cm = confusion_matrix(true_labels, predicted_labels)
     cm_df = pd.DataFrame(cm, index=df['Species'].unique(), columns=df['Species'].unique())
 
-    # Results and Precision Metrics
+    # Write results and Precision Metrics
     with open('results.txt', 'a') as r:
         print("\n\n########################################################################################################################\n\n",file=r)
         print(f"** SKLEARN KNN ALGORITHM ( K={k}) ** \n",file=r)
@@ -65,12 +65,16 @@ def main_algorithm(k_input):
 
 # ------ Main Algorithm Call ------ #
         
+# K input
 k = int(input("Enter the number of neighbors for SKLEARN KNN (1,3,5,7): "))
 
+# Start measure execution time
 start_time = time.time()
 
+# Main Code Call
 main_algorithm(k)
 
+# End measure execution time
 end_time = time.time()
 execution_time = end_time - start_time
 

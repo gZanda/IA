@@ -15,7 +15,7 @@ def distanciaEuclidiana (linha1, linha2):
     pw = (linha1['PetalWidthCm'] - linha2['PetalWidthCm']) **2
     return math.sqrt(sl + sw + pl + pw)
 
-# find the K-nearest neighbors 
+# find the K-nearest neighbors and make a list of they indexes
 def k_nearest_neighbors(train_df, test_row, k):
     distances = []
     for idx, train_row in train_df.iterrows():
@@ -25,7 +25,7 @@ def k_nearest_neighbors(train_df, test_row, k):
     neighbors = [idx for idx, _ in distances[:k]]  # Store only index
     return neighbors
 
-# Classification of the species
+# Classify the species based on the most common species in the neighbors
 def classify_species(train_df, nearest_neighbors_list):
     species_list = []
     for neighbors in nearest_neighbors_list:
@@ -62,13 +62,13 @@ def main_algorithm(k_input):
     species_predictions = classify_species(df_train, nearest_neighbors_list)
     df_test['Predicted_Species'] = species_predictions
 
-    # Precision Metrics ( Confusion Matrix, Accuracy, Precision, Recall )
+    # Confusion Matrix
     true_labels = df_test['Species']
     predicted_labels = df_test['Predicted_Species']
     cm = confusion_matrix(true_labels, predicted_labels)
     cm_df = pd.DataFrame(cm, index=df['Species'].unique(), columns=df['Species'].unique())
 
-    # Write results
+    # Write results and Precision Metrics
     with open('results.txt', 'w') as r:
         print(f"** HARDCORE KNN ALGORITHM ( K={k}) ** \n",file=r)
 
@@ -86,12 +86,16 @@ def main_algorithm(k_input):
 
 # ------ Main Algorithm Call ------ #
         
+# K input
 k = int(input("Enter the number of neighbors for the HARDCORE KNN (1,3,5,7): "))
     
+# Start measure execution time
 start_time = time.time()
 
+# Main Code Call
 main_algorithm(k)
 
+# End measure execution time
 end_time = time.time()
 execution_time = end_time - start_time
 

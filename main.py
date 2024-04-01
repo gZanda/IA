@@ -1,9 +1,9 @@
 import subprocess
 
-# Run knn_hardcore.py
+# Run "Hardcore" KNN
 subprocess.run(["python", "knn_hardcore.py"])
 
-# Run knn_sklearn.py
+# Run SKLEARN KNN
 subprocess.run(["python", "knn_sklearn.py"])
 
 print("Results written on results.txt")

@@ -1,23 +1,22 @@
-# IA
+# Funcionamento
 
-- 1. Carregar o CSV para um Dataframe do Pandas
+- 1. Execute apenas "main.py"
 
-- 2. Misturar os dados usando uma SEED fixa
+- 2. O algoritmo "HARDCORE" irá classificar os dados e escrever seus resultados e métricas em "results.txt"
 
-- 3. Separar o Dataframe ( 80/20 = Treino e Teste )
+- 3. O algotitmo do SKLEARN também irá classificar os dados e escrever em "results.txt" seus resultados e métricas
 
-- 4. Aplicar a função de Distância Euclidiana para calcular distâncias
+- 4. Por fim, você terá em mãos um "results.txt" com:
 
-- 5. Classificar o dataframe de Teste de acordo com os "K" mais próximos
+    - Todas as classificações feitas ( juntamente também da classificação original correta )
+    - Métricas de Acurácia, Revocação e Precisão
+    - Matrix de confusão 
+    - Métrica de Tempo de Execução 
 
-- 6. Exibir os dados classificados
+# Dependências utilizadas
 
-- 7. Calcular: Matriz de Confusão, Acurácia, Precisão, Revocação 
+- Pandas: `pip install scikit-learn`
 
-- Bonus: Exibir os dados de Memória Máxima Utilizada e Tempo de Execução
+- Numpy: `pip install numpy`
 
-- 8. Classificar os **MESMOS** dados utilizando KNN da biblioteca sklearn
-
-- 9. Calcular suas métricas
-
-- 10. Comparar
+- Sklearn: `pip install pandas`
