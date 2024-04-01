@@ -57,14 +57,14 @@ def main_algorithm(k_input):
         print(selected_columns,file=r)
 
         print("\n# ------ Precision Metrics ------# \n",file=r)
-        print("Accuracy:",accuracy_score(y_test, y_pred),file=r)
-        print("Precision:",precision_score(y_test, y_pred, average='weighted'),file=r)
-        print("Recall:",recall_score(y_test, y_pred, average='weighted'),file=r)
+        print("Accuracy:", accuracy_score(y_test, y_pred),file=r)
+        print("Precision:", precision_score(y_test, y_pred, average='weighted'),file=r)
+        print("Recall:", recall_score(y_test, y_pred, average='weighted'),file=r)
 
         print("\n# ------ Confusion Matrix ------# \n",file=r)
         print(cm_df,file=r)
 
-# ------ Performance Metrics ------ #
+# ------ Main Algorithm Call ------ #
         
 k = int(input("Enter the number of neighbors for SKLEARN KNN (1,3,5,7): "))
 

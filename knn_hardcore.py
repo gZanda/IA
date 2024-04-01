@@ -39,19 +39,19 @@ def classify_species(train_df, nearest_neighbors_list):
 
 def main_algorithm(k_input):
 
-    # 1. Load the CSV data into a DataFrame
+    # Load the CSV data into a DataFrame
     df = pd.read_csv("iris.csv")
 
-    # 2. Shuffle the dataframe usign a fixed seed
+    # Shuffle the dataframe usign a fixed seed
     SEED = 123
     np.random.seed(SEED)
     df_shuffled = df.sample(frac=1 , random_state=SEED).reset_index(drop=True)
 
-    # 3. Split into training and testing ( 80/20 )
+    # Split into training and testing ( 80/20 )
     df_train = df_shuffled[0:120].copy()
     df_test = df_shuffled[120:].copy()
 
-    # 4. Find the k-nearest neighbors
+    # Find the k-nearest neighbors
     k = k_input
 
     nearest_neighbors_list = []
@@ -59,17 +59,17 @@ def main_algorithm(k_input):
         neighbors = k_nearest_neighbors(df_train, test_row, k)
         nearest_neighbors_list.append(neighbors)
 
-    # 5. Predict the TEST species 
+    # Predict the TEST species 
     species_predictions = classify_species(df_train, nearest_neighbors_list)
     df_test['Predicted_Species'] = species_predictions
 
-    # 7. Precision Metrics ( Confusion Matrix, Accuracy, Precision, Recall )
+    # Precision Metrics ( Confusion Matrix, Accuracy, Precision, Recall )
     true_labels = df_test['Species']
     predicted_labels = df_test['Predicted_Species']
     cm = confusion_matrix(true_labels, predicted_labels)
     cm_df = pd.DataFrame(cm, index=df['Species'].unique(), columns=df['Species'].unique())
 
-    # 6. Display prediction results
+    # Write results
     with open('results.txt', 'w') as r:
         print(f"** HARDCORE KNN ALGORITHM ( K={k}) ** \n",file=r)
 
@@ -85,7 +85,7 @@ def main_algorithm(k_input):
         print("\n# ------ Confusion Matrix ------# \n",file=r)
         print(cm_df,file=r)
 
-# ------ Performance Metrics ------ #
+# ------ Main Algorithm Call ------ #
         
 k = int(input("Enter the number of neighbors for the HARDCORE KNN (1,3,5,7): "))
     
@@ -96,7 +96,7 @@ main_algorithm(k)
 end_time = time.time()
 execution_time = end_time - start_time
 
-# Write to result file
+# Write performance metrics
 with open('results.txt', 'a') as r:
     print("\n# ------ Performance Metrics ------# \n",file=r)
     print("Execution time:", execution_time, "seconds",file=r)
