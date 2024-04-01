@@ -71,7 +71,7 @@ def main_algorithm():
 
     # 6. Display prediction results
     with open('results.txt', 'w') as r:
-        print("** HARDCORE KNN ALGORITHM ** \n",file=r)
+        print(f"** HARDCORE KNN ALGORITHM ( K={k}) ** \n",file=r)
 
         selected_columns = df_test[['Id', 'Species', 'Predicted_Species']]
         print("# ------ Classification ------# \n",file=r)
@@ -90,7 +90,7 @@ def main_algorithm():
 start_time = time.time()
 
 # Peak memory usage
-mem_usage = memory_usage(proc=main_algorithm)
+mem_usage = memory_usage(proc=main_algorithm) # Runs the main code
 peak_mem = max(mem_usage)
 peak_mem_mb = round(peak_mem / 1024, 2)  # Convert from MiB to MB
 

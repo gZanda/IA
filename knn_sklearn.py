@@ -50,7 +50,7 @@ def main_algorithm():
     # Results and Precision Metrics
     with open('results.txt', 'a') as r:
         print("\n\n########################################################################################################################\n\n",file=r)
-        print("** SKLEARN KNN ALGORITHM ** \n",file=r)
+        print(f"** SKLEARN KNN ALGORITHM ( K={k}) ** \n",file=r)
 
         selected_columns = df_test[['Id', 'Species', 'Predicted_Species']]
         print("# ------ Classification ------# \n",file=r)
@@ -69,7 +69,7 @@ def main_algorithm():
 start_time = time.time()
 
 # Peak memory usage
-mem_usage = memory_usage(proc=main_algorithm)
+mem_usage = memory_usage(proc=main_algorithm) # Runs the main code
 peak_mem = max(mem_usage)
 peak_mem_mb = round(peak_mem / 1024, 2)  # Convert from MiB to MB
 
