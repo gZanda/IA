@@ -72,6 +72,9 @@ list_of_k = [1, 3, 5, 7]
 # Start measure execution time
 start_time = time.time()
 
+# Message to User
+print("Running the SKLEARN KNN Algorithm...")
+
 # Main Code Call
 for k in list_of_k:
     main_algorithm(k)

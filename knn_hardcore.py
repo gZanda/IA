@@ -94,6 +94,9 @@ if os.path.exists('results.txt'):
 
 # K's
 list_of_k = [1, 3, 5, 7]
+
+# Message to User
+print("Running the Hardcore KNN Algorithm...")
     
 # Start measure execution time
 start_time = time.time()
