@@ -17,8 +17,8 @@
 
 # Dependências utilizadas
 
-- Pandas: `pip install scikit-learn`
+- Pandas: `pip install pandas`
 
 - Numpy: `pip install numpy`
 
-- Sklearn: `pip install pandas`
+- Sklearn: `pip install scikit-learn`
