@@ -4,7 +4,6 @@ import math
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score, precision_score, recall_score
 import time
-from memory_profiler import memory_usage
 
 # ------ Functions ------ #
 

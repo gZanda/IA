@@ -4,7 +4,6 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score, precision_score, recall_score
 import time
-from memory_profiler import memory_usage
 
 def main_algorithm(k_input):
 
