@@ -4,6 +4,7 @@ import math
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score, precision_score, recall_score
 import time
+import os
 
 # ------ Functions ------ #
 
@@ -69,12 +70,13 @@ def main_algorithm(k_input):
     cm_df = pd.DataFrame(cm, index=df['Species'].unique(), columns=df['Species'].unique())
 
     # Write results and Precision Metrics
-    with open('results.txt', 'w') as r:
+    with open('results.txt', 'a') as r:
+        print("\n\n########################################################################################################################\n\n",file=r)
         print(f"** HARDCORE KNN ALGORITHM ( K={k}) ** \n",file=r)
 
         selected_columns = df_test[['Id', 'Species', 'Predicted_Species']]
         print("# ------ Classification ------# \n",file=r)
-        print(selected_columns,file=r)
+        print(selected_columns.to_string(index=False),file=r)
 
         print("\n# ------ Precision Metrics ------# \n",file=r)
         print("Accuracy:", accuracy_score(true_labels, predicted_labels),file=r)
@@ -85,15 +87,20 @@ def main_algorithm(k_input):
         print(cm_df,file=r)
 
 # ------ Main Algorithm Call ------ #
-        
-# K input
-k = int(input("Enter the number of neighbors for the HARDCORE KNN (1,3,5,7): "))
+
+# Delete the "results.txt" file 
+if os.path.exists('results.txt'):
+    os.remove('results.txt')        
+
+# K's
+list_of_k = [1, 3, 5, 7]
     
 # Start measure execution time
 start_time = time.time()
 
 # Main Code Call
-main_algorithm(k)
+for k in list_of_k:
+    main_algorithm(k)
 
 # End measure execution time
 end_time = time.time()

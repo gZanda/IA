@@ -4,6 +4,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score, precision_score, recall_score
 import time
+import os
 
 def main_algorithm(k_input):
 
@@ -53,7 +54,7 @@ def main_algorithm(k_input):
 
         selected_columns = df_test[['Id', 'Species', 'Predicted_Species']]
         print("# ------ Classification ------# \n",file=r)
-        print(selected_columns,file=r)
+        print(selected_columns.to_string(index=False),file=r)
 
         print("\n# ------ Precision Metrics ------# \n",file=r)
         print("Accuracy:", accuracy_score(y_test, y_pred),file=r)
@@ -64,15 +65,16 @@ def main_algorithm(k_input):
         print(cm_df,file=r)
 
 # ------ Main Algorithm Call ------ #
-        
-# K input
-k = int(input("Enter the number of neighbors for SKLEARN KNN (1,3,5,7): "))
-
+             
+# K's
+list_of_k = [1, 3, 5, 7]
+    
 # Start measure execution time
 start_time = time.time()
 
 # Main Code Call
-main_algorithm(k)
+for k in list_of_k:
+    main_algorithm(k)
 
 # End measure execution time
 end_time = time.time()
