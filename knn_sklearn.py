@@ -85,5 +85,7 @@ execution_time = end_time - start_time
 
 # Write performance metrics
 with open('results.txt', 'a') as r:
-    print("\n# ------ Performance Metrics ------# \n",file=r)
+    print("\n\n########################################################################################################################\n",file=r)
+    print("\n# ------ Performance Metrics KNN SKLEARN ------# \n",file=r)
     print("Execution time:", execution_time, "seconds",file=r)
+    print("\n\n########################################################################################################################\n\n",file=r)
