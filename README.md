@@ -22,3 +22,7 @@
 - Numpy: `pip install numpy`
 
 - Sklearn: `pip install scikit-learn`
+
+# Observação
+
+- Utilizamos por codar e comentar o código em Inglês por pura conveniência e costume 😃
