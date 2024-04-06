@@ -1,4 +1,4 @@
-# Artificial Inteligence Algorithm
+# Artificial Inteligence Algorithms
 
 - KNN --> Prediction
 
