@@ -3,6 +3,11 @@ import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 import random
 from sklearn.preprocessing import StandardScaler
+import numpy as np
+
+# Euclidian Distance betwwen two points
+def distance(point1, point2):
+    return np.sqrt((point1['X'] - point2['X'])**2 + (point1['Y'] - point2['Y'])**2)
 
 # Input K
 k = int(input("Enter the number of clusters: "))
