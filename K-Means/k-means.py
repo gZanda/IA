@@ -28,12 +28,17 @@ plt.xlabel('Component 1')
 plt.ylabel('Component 2')
 plt.grid(True, which='both', linestyle='--', linewidth=0.5, alpha=0.5)
 
+# Add a specific point
+plt.scatter(2, 2, color='red', marker='x', label='Specific Point')
+
 # Display the plot
 plt.draw()
 plt.pause(3)
 
 # Clear the plot
-plt.clf()
+# plt.clf()
 
 # START K-MEANS CLUSTERING
 
+# Display the plot until the user closes it
+plt.show()
