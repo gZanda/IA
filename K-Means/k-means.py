@@ -45,6 +45,8 @@ plt.title('Two dimensional Iris PCA')
 plt.xlabel('Component 1')
 plt.ylabel('Component 2')
 plt.grid(True, which='both', linestyle='--', linewidth=0.5, alpha=0.5)
+plt.xlim(min_range - 2, max_range + 2)
+plt.ylim(min_range - 2, max_range + 2)
 
 # Display the initial plot
 plt.draw()
