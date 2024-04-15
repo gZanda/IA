@@ -48,8 +48,25 @@ for _ in range(max_iters):
     # Assign points to the nearest centroid
     clusters = [[] for _ in range(k)]
     for point in pca_result:
-        closest_centroid_idx = min(range(k), key=lambda i: distance(point, centroids[i]))
-        clusters[closest_centroid_idx].append(point)
+        # Check if centroids list is empty
+        if not centroids.any():
+            # Handle the case when centroids list is empty
+            print("Error: Centroids list is empty.")
+            break
+        
+        # Calculate distances to centroids
+        try:
+            closest_centroid_idx = min(range(k), key=lambda i: distance(point, centroids[i]))
+            clusters[closest_centroid_idx].append(point)
+        except IndexError:
+            # Handle the case when centroids list index is out of range
+            print("Error: Index out of range for centroids list.")
+            break
+        except Exception as e:
+            # Handle any other exceptions
+            print(f"An error occurred: {e}")
+            break
+
 
     # Update centroids
     new_centroids = []
@@ -73,13 +90,19 @@ for _ in range(max_iters):
     for i in range(k):
         if clusters[i]:
             plt.scatter(*zip(*clusters[i]), label=f'Cluster {i + 1}')
-    plt.scatter(centroids[:, 0], centroids[:, 1], color='red', marker='x', label='Centroids')
+
+    # Check if centroids array is not empty before plotting
+    if centroids.size != 0:
+        # Reshape centroids array to maintain 2-dimensional shape
+        centroids_reshaped = centroids.reshape(-1, 2)
+        plt.scatter(centroids_reshaped[:, 0], centroids_reshaped[:, 1], color='red', marker='x', label='Centroids')
+
     plt.title('K-means Clustering')
     plt.xlabel('X')
     plt.ylabel('Y')
     plt.legend()
     plt.grid(True, linestyle='--', linewidth=0.5, alpha=0.5)
-
+    
     # Update plot
     plt.legend()
     plt.draw()
