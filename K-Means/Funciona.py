@@ -48,7 +48,7 @@ plt.draw()
 plt.pause(3)
 
 # Display the initial centroids
-plt.scatter(centroids[:, 0], centroids[:, 1], color='red', marker='x', label='Initial Centroids', s=100)
+plt.scatter(centroids[:, 0], centroids[:, 1], color='black', marker='x', label='Initial Centroids', s=100 )
 plt.legend()
 plt.draw()
 plt.pause(3)
@@ -93,7 +93,7 @@ for _ in range(max_iters):
     if centroids.size != 0:
         # Reshape centroids array to maintain 2-dimensional shape
         centroids_reshaped = centroids.reshape(-1, centroids.shape[1])
-        plt.scatter(centroids_reshaped[:, 0], centroids_reshaped[:, 1], color='red', marker='x', label='Centroids', s=100)
+        plt.scatter(centroids_reshaped[:, 0], centroids_reshaped[:, 1], color='black', marker='x', label='Centroids', s=100 )
 
     plt.title('K-means Clustering')
     plt.xlabel('Component 1')
