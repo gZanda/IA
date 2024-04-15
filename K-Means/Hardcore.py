@@ -33,7 +33,7 @@ centroids = np.random.rand(k, 2) * 10 - 5
 
 # Create initial plot with scatter plot
 plt.figure(figsize=(8, 6))
-plt.title('K-means Clustering')
+plt.title('K-means Hardcore')
 plt.xlabel('Component 1')
 plt.ylabel('Component 2')
 plt.xlim(-5, 5)
@@ -95,7 +95,7 @@ for _ in range(max_iters):
         centroids_reshaped = centroids.reshape(-1, centroids.shape[1])
         plt.scatter(centroids_reshaped[:, 0], centroids_reshaped[:, 1], color='black', marker='x', label='Centroids', s=100 )
 
-    plt.title('K-means Clustering')
+    plt.title('K-means Hardcore')
     plt.xlabel('Component 1')
     plt.ylabel('Component 2')
     plt.xlim(-5, 5)
