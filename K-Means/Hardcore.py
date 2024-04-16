@@ -1,12 +1,12 @@
-import sys
-import numpy as np
 import pandas as pd
+import numpy as np
+import sys
 import matplotlib.pyplot as plt
+from sklearn.metrics import silhouette_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
-def run_sklearn_algorithm(k):
-
+def run_custom_kmeans_algorithm(k):
     # Euclidean Distance between two points
     def distance(point1, point2):
         return np.sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2)
@@ -95,6 +95,7 @@ def run_sklearn_algorithm(k):
             centroids_reshaped = centroids.reshape(-1, centroids.shape[1])
             plt.scatter(centroids_reshaped[:, 0], centroids_reshaped[:, 1], color='black', marker='x', label='Centroids', s=100 )
 
+        # Plot
         plt.title('K-means Hardcore')
         plt.xlabel('Component 1')
         plt.ylabel('Component 2')
@@ -108,9 +109,20 @@ def run_sklearn_algorithm(k):
         plt.draw()
         plt.pause(2)
 
+    # Calculate cluster labels
+    cluster_labels = np.zeros(len(pca_result))
+    for i, cluster in enumerate(clusters):
+        for point in cluster:
+            point_idx = np.where((pca_result == point).all(axis=1))[0][0]
+            cluster_labels[point_idx] = i
+
+    # Calculate silhouette score
+    silhouette_avg = silhouette_score(pca_result, cluster_labels)
+    print(f"For n_clusters = {k}, the average silhouette_score is : {silhouette_avg}")
+
     plt.ioff()  # Turn off interactive mode at the end
     plt.show()
 
 if __name__ == "__main__":
     k = int(sys.argv[1])
-    run_sklearn_algorithm(k)
+    run_custom_kmeans_algorithm(k)
