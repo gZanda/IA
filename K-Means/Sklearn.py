@@ -1,9 +1,10 @@
-import sys
 import pandas as pd
+import sys
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
-from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import silhouette_score
 
 def run_sklearn_algorithm(k):
     data = pd.read_csv("iris.csv")
@@ -17,6 +18,9 @@ def run_sklearn_algorithm(k):
 
     kmeans = KMeans(n_clusters=k, random_state=None, n_init=10)
     kmeans.fit(pca_result)
+
+    silhouette_avg = silhouette_score(pca_result, kmeans.labels_)
+    print(f"For n_clusters = {k}, the average silhouette_score is : {silhouette_avg}")
 
     plt.figure(figsize=(8, 6))
     plt.title('K-means Sklearn')
