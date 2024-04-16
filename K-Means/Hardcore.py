@@ -119,7 +119,7 @@ def run_custom_kmeans_algorithm(k):
 
     # Calculate silhouette score
     silhouette_avg = silhouette_score(pca_result, cluster_labels)
-    print(f"K-Means Hardcore with {k} clusters, silhouette score = {silhouette_avg}")
+    print(f"K-Means Hardcore silhouette score = {silhouette_avg}")
 
     plt.ioff()  # Turn off interactive mode at the end
     plt.show()

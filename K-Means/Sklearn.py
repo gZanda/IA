@@ -28,7 +28,7 @@ def run_sklearn_algorithm(k):
 
     # Calculate silhouette score
     silhouette_avg = silhouette_score(pca_result, kmeans.labels_)
-    print(f"K-Means Sklearn with {k} clusters, silhouette score = {silhouette_avg}")
+    print(f"K-Means Sklearn silhouette score = {silhouette_avg}")
 
     # Plot the clusters
     plt.figure(figsize=(8, 6))
