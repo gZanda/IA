@@ -7,21 +7,30 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import silhouette_score
 
 def run_sklearn_algorithm(k):
+
+    # Load the data
     data = pd.read_csv("iris.csv")
+
+    # Drop unnecessary columns
     data.drop(columns=['Id', 'Species'], inplace=True)
 
+    # Standardize data
     scaler = StandardScaler()
     scaled_data = scaler.fit_transform(data)
 
+    # Apply PCA
     pca = PCA(n_components=2)
     pca_result = pca.fit_transform(scaled_data)
 
+    # Apply K-means algorithm
     kmeans = KMeans(n_clusters=k, random_state=None, n_init=10)
     kmeans.fit(pca_result)
 
+    # Calculate silhouette score
     silhouette_avg = silhouette_score(pca_result, kmeans.labels_)
     print(f"K-Means Sklearn with {k} clusters, silhouette score = {silhouette_avg}")
 
+    # Plot the clusters
     plt.figure(figsize=(8, 6))
     plt.title('K-means Sklearn')
     plt.xlabel('Component 1')

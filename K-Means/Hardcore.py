@@ -7,6 +7,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
 def run_custom_kmeans_algorithm(k):
+
     # Euclidean Distance between two points
     def distance(point1, point2):
         return np.sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2)
@@ -25,13 +26,14 @@ def run_custom_kmeans_algorithm(k):
     pca = PCA(n_components=2)
     pca_result = pca.fit_transform(scaled_data)
 
-    # Your data and parameters
+    # Tolerance for centroid updates and iterations
     max_iters = 100
-    tolerance = 1e-4  # Tolerance for centroid updates
+    tolerance = 1e-4  
+
     # Initialize centroids list with random values ( from -5 to 5 )
     centroids = np.random.rand(k, 2) * 10 - 5
 
-    # Create initial plot with scatter plot
+    # Create initial base plot 
     plt.figure(figsize=(8, 6))
     plt.title('K-means Hardcore')
     plt.xlabel('Component 1')
@@ -41,13 +43,13 @@ def run_custom_kmeans_algorithm(k):
     plt.grid(True, linestyle='--', linewidth=0.5, alpha=0.5)
     plt.ion()  # Turn on interactive mode
 
-    # Plot initial data points with PCA 
+    # Insert initial data points  
     plt.scatter(pca_result[:, 0], pca_result[:, 1], color='grey', label='Initial Data Points')
     plt.legend()
     plt.draw()
     plt.pause(5)
 
-    # Display the initial centroids
+    # Insert the centroids
     plt.scatter(centroids[:, 0], centroids[:, 1], color='black', marker='x', label='Initial Centroids', s=100 )
     plt.legend()
     plt.draw()
@@ -55,9 +57,11 @@ def run_custom_kmeans_algorithm(k):
 
     # Iterate until convergence
     for _ in range(max_iters):
+
         # Assign points to the nearest centroid
         clusters = [[] for _ in range(k)]
         for point in pca_result:
+            
             # Calculate distances to centroids
             closest_centroid_idx = min(range(k), key=lambda i: distance(point, centroids[i]))
             clusters[closest_centroid_idx].append(point)
@@ -70,9 +74,8 @@ def run_custom_kmeans_algorithm(k):
                 new_centroids.append(new_centroid)
         new_centroids = np.array(new_centroids)
 
-        # Check for convergence
+        # Check for convergence ( stop condition )
         if centroids.shape == new_centroids.shape and np.linalg.norm(centroids - new_centroids) < tolerance:
-            print("K-Means Algorithm Converged!")
             break
 
         # Pad new_centroids array with zeros to match the number of centroids
@@ -83,7 +86,7 @@ def run_custom_kmeans_algorithm(k):
         # Update centroids
         centroids = new_centroids
 
-        # Clear previous plot
+        # Clear previous points on graph
         plt.clf()
 
         # Plot clusters and centroids
@@ -95,7 +98,7 @@ def run_custom_kmeans_algorithm(k):
             centroids_reshaped = centroids.reshape(-1, centroids.shape[1])
             plt.scatter(centroids_reshaped[:, 0], centroids_reshaped[:, 1], color='black', marker='x', label='Centroids', s=100 )
 
-        # Plot
+        # Plot again with correct data
         plt.title('K-means Hardcore')
         plt.xlabel('Component 1')
         plt.ylabel('Component 2')
@@ -103,8 +106,6 @@ def run_custom_kmeans_algorithm(k):
         plt.ylim(-5, 5)
         plt.legend()
         plt.grid(True, linestyle='--', linewidth=0.5, alpha=0.5)
-
-        # Update plot
         plt.legend()
         plt.draw()
         plt.pause(2)
