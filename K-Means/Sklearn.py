@@ -31,7 +31,7 @@ def run_sklearn_algorithm(k):
     print(f"K-Means Sklearn silhouette score = {silhouette_avg}")
 
     # Plot the clusters
-    plt.figure(figsize=(8, 6))
+    plt.figure(figsize=(5, 4))
     plt.title('K-means Sklearn')
     plt.xlabel('Component 1')
     plt.ylabel('Component 2')

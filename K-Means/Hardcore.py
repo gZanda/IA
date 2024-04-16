@@ -34,7 +34,7 @@ def run_custom_kmeans_algorithm(k):
     centroids = np.random.rand(k, 2) * 10 - 5
 
     # Create initial base plot 
-    plt.figure(figsize=(8, 6))
+    plt.figure(figsize=(5, 4))
     plt.title('K-means Hardcore')
     plt.xlabel('Component 1')
     plt.ylabel('Component 2')
