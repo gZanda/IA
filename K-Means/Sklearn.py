@@ -20,7 +20,7 @@ def run_sklearn_algorithm(k):
     kmeans.fit(pca_result)
 
     silhouette_avg = silhouette_score(pca_result, kmeans.labels_)
-    print(f"For n_clusters = {k}, the average silhouette_score is : {silhouette_avg}")
+    print(f"K-Means Sklearn with {k} clusters, silhouette score = {silhouette_avg}")
 
     plt.figure(figsize=(8, 6))
     plt.title('K-means Sklearn')

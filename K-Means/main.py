@@ -1,6 +1,5 @@
 import multiprocessing
 import subprocess
-from time import sleep
 
 def run_script(script_name, k):
     subprocess.run(["python", script_name, str(k)])
