@@ -72,7 +72,7 @@ def run_sklearn_algorithm(k):
 
         # Check for convergence
         if centroids.shape == new_centroids.shape and np.linalg.norm(centroids - new_centroids) < tolerance:
-            print("Code Converged!")
+            print("K-Means Algorithm Converged!")
             break
 
         # Pad new_centroids array with zeros to match the number of centroids
