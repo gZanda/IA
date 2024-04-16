@@ -9,7 +9,7 @@ def main():
 
     # Get the value of k from user input or any other source
     k = int(input("Enter the number of clusters (k): "))
-    script1 = "Hardcore.py"
+    script1 = "Chat.py"
     script2 = "Sklearn.py"
 
     p1 = multiprocessing.Process(target=run_script, args=(script1, k))
