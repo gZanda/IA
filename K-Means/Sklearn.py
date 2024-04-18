@@ -5,6 +5,7 @@ from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import silhouette_score
+import numpy as np
 
 def run_sklearn_algorithm(k):
 
@@ -22,8 +23,14 @@ def run_sklearn_algorithm(k):
     pca = PCA(n_components=2)
     pca_result = pca.fit_transform(scaled_data)
 
-    # Apply K-means algorithm
-    kmeans = KMeans(n_clusters=k, random_state=None, n_init=10)
+    # Set seed for reproducibility
+    np.random.seed(60)
+
+    # Set initial centroids
+    centroids = np.random.rand(k, 2) * 10 - 5
+
+    # Apply K-means algorithm with specified initial centroids
+    kmeans = KMeans(n_clusters=k, init=centroids, n_init=1)
     kmeans.fit(pca_result)
 
     # Calculate silhouette score

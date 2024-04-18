@@ -30,6 +30,9 @@ def run_custom_kmeans_algorithm(k):
     max_iters = 100
     tolerance = 1e-4  
 
+    # Set seed for reproducibility
+    np.random.seed(60)
+
     # Initialize centroids list with random values ( from -5 to 5 )
     centroids = np.random.rand(k, 2) * 10 - 5
 
