@@ -1,8 +1,10 @@
 # Artificial Inteligence Algorithms
 
-- KNN --> Prediction
+- KNN --> Prediction / Classification
 
 - K-Means --> Clustering
+
+- MLP --> Prediction / Classification
 
 # Dependencies Used
 
@@ -11,3 +13,5 @@
 - Numpy: `pip install numpy`
 
 - Sklearn: `pip install scikit-learn`
+
+- Matplotlib: `pip install matplotlib`
