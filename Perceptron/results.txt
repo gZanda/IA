@@ -1,0 +1,96 @@
+
+###--- KNN ---###
+
+ Id         Species Predicted_Species
+121  Iris-virginica    Iris-virginica
+138  Iris-virginica    Iris-virginica
+126  Iris-virginica    Iris-virginica
+148  Iris-virginica    Iris-virginica
+ 40     Iris-setosa       Iris-setosa
+ 85 Iris-versicolor   Iris-versicolor
+  3     Iris-setosa       Iris-setosa
+ 68 Iris-versicolor   Iris-versicolor
+ 56 Iris-versicolor   Iris-versicolor
+ 50     Iris-setosa       Iris-setosa
+ 69 Iris-versicolor   Iris-versicolor
+141  Iris-virginica    Iris-virginica
+ 79 Iris-versicolor   Iris-versicolor
+145  Iris-virginica    Iris-virginica
+112  Iris-virginica    Iris-virginica
+ 33     Iris-setosa       Iris-setosa
+ 74 Iris-versicolor   Iris-versicolor
+ 48     Iris-setosa       Iris-setosa
+149  Iris-virginica    Iris-virginica
+114  Iris-virginica    Iris-virginica
+ 97 Iris-versicolor   Iris-versicolor
+ 58 Iris-versicolor   Iris-versicolor
+124  Iris-virginica    Iris-virginica
+107  Iris-virginica   Iris-versicolor
+ 84 Iris-versicolor    Iris-virginica
+ 18     Iris-setosa       Iris-setosa
+ 99 Iris-versicolor   Iris-versicolor
+ 67 Iris-versicolor   Iris-versicolor
+127  Iris-virginica    Iris-virginica
+110  Iris-virginica    Iris-virginica
+
+--------------------------------------------------
+
+Accuracy: 0.9333333333333333
+Precision: 0.9440559440559442
+Recall: 0.9440559440559442
+
+--------------------------------------------------
+
+                 Iris-setosa  Iris-versicolor  Iris-virginica
+Iris-setosa                6                0               0
+Iris-versicolor            0               10               1
+Iris-virginica             0                1              12
+
+###--- MLP ---###
+
+ Id         Species Predicted_Species
+121  Iris-virginica    Iris-virginica
+138  Iris-virginica    Iris-virginica
+126  Iris-virginica    Iris-virginica
+148  Iris-virginica    Iris-virginica
+ 40     Iris-setosa       Iris-setosa
+ 85 Iris-versicolor   Iris-versicolor
+  3     Iris-setosa       Iris-setosa
+ 68 Iris-versicolor   Iris-versicolor
+ 56 Iris-versicolor   Iris-versicolor
+ 50     Iris-setosa       Iris-setosa
+ 69 Iris-versicolor   Iris-versicolor
+141  Iris-virginica    Iris-virginica
+ 79 Iris-versicolor   Iris-versicolor
+145  Iris-virginica    Iris-virginica
+112  Iris-virginica    Iris-virginica
+ 33     Iris-setosa       Iris-setosa
+ 74 Iris-versicolor   Iris-versicolor
+ 48     Iris-setosa       Iris-setosa
+149  Iris-virginica    Iris-virginica
+114  Iris-virginica    Iris-virginica
+ 97 Iris-versicolor   Iris-versicolor
+ 58 Iris-versicolor   Iris-versicolor
+124  Iris-virginica    Iris-virginica
+107  Iris-virginica    Iris-virginica
+ 84 Iris-versicolor    Iris-virginica
+ 18     Iris-setosa       Iris-setosa
+ 99 Iris-versicolor   Iris-versicolor
+ 67 Iris-versicolor   Iris-versicolor
+127  Iris-virginica    Iris-virginica
+110  Iris-virginica    Iris-virginica
+
+--------------------------------------------------
+
+Accuracy: 0.9666666666666667
+Precision: 0.9761904761904763
+Recall: 0.9696969696969697
+
+--------------------------------------------------
+
+                 Iris-setosa  Iris-versicolor  Iris-virginica
+Iris-setosa                6                0               0
+Iris-versicolor            0               10               1
+Iris-virginica             0                0              13
+
+

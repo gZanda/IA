@@ -5,7 +5,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix
 
 # Title
-print("###--- MLP ---###\n")
+print("Running MLP Classifier...")
 
 # Load the CSV
 df = pd.read_csv('iris.csv')
@@ -41,31 +41,35 @@ mlp_classifier.fit(X_train, y_train)
 # Predict
 y_pred = mlp_classifier.predict(X_test)
 
-# Print the DataFrame with predictions
+# DataFrame with predictions
 df_test['Predicted_Species'] = le.inverse_transform(y_pred)
 selected_columns = df_test[['Id', 'Species', 'Predicted_Species']]
-print(selected_columns.to_string(index=False))
 
 # Evaluate the classifier
 accuracy = accuracy_score(y_test, y_pred)
 precision = precision_score(y_test, y_pred, average='macro')
 recall = recall_score(y_test, y_pred, average='macro')
 
-
-print("\n--------------------------------------------------")
-
-# Write performance metrics
-print("\nAccuracy:", accuracy)
-print("Precision:", precision)
-print("Recall:", recall)
-
-print("\n--------------------------------------------------")
-
 # Confusion Matrix
 true_labels = df_test['Species']
 predicted_labels = df_test['Predicted_Species']
 cm = confusion_matrix(true_labels, predicted_labels)
 cm_df = pd.DataFrame(cm, index=df['Species'].unique(), columns=df['Species'].unique())
-print("\nConfusion Matrix:")
-print(cm_df)
-print("\n")
+
+# Write results and Precision Metrics
+with open('results.txt', 'a') as r:
+    print("\n###--- MLP ---###\n",file=r)
+
+    selected_columns = df_test[['Id', 'Species', 'Predicted_Species']]
+    print(selected_columns.to_string(index=False), file=r)
+
+    print("\n--------------------------------------------------",file=r)
+
+    print("\nAccuracy:", accuracy,file=r)
+    print("Precision:", precision,file=r)
+    print("Recall:", recall,file=r)
+
+    print("\n--------------------------------------------------\n",file=r)
+
+    print(cm_df,file=r)
+    print("\n",file=r)

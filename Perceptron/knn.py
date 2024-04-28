@@ -5,7 +5,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score, precision_score, recall_score
 
 # Title
-print("\n###--- KNN ---###\n")
+print("Running KNN Classifier...")
 
 # Load the CSV
 df = pd.read_csv('iris.csv')
@@ -39,30 +39,33 @@ y_pred = knn.predict(X_test)
 # Add predictions to a new column 
 df_test['Predicted_Species'] = y_pred
 
-# Print the DataFrame with predictions
+# DataFrame with predictions
 selected_columns = df_test[['Id', 'Species', 'Predicted_Species']]
-print(selected_columns.to_string(index=False))
 
 # Evaluate the classifier
 accuracy = accuracy_score(y_test, y_pred)
 precision = precision_score(y_test, y_pred, average='macro')
 recall = recall_score(y_test, y_pred, average='macro')
 
-
-print("\n--------------------------------------------------")
-
-# Write performance metrics
-print("\nAccuracy:", accuracy)
-print("Precision:", precision)
-print("Recall:", recall)
-
-print("\n--------------------------------------------------")
-
 # Confusion Matrix
 true_labels = df_test['Species']
 predicted_labels = df_test['Predicted_Species']
 cm = confusion_matrix(true_labels, predicted_labels)
 cm_df = pd.DataFrame(cm, index=df['Species'].unique(), columns=df['Species'].unique())
-print("\nConfusion Matrix:")
-print(cm_df)
-print("\n")
+
+# Write results and Precision Metrics
+with open('results.txt', 'w') as r:
+    print("\n###--- KNN ---###\n",file=r)
+
+    selected_columns = df_test[['Id', 'Species', 'Predicted_Species']]
+    print(selected_columns.to_string(index=False), file=r)
+
+    print("\n--------------------------------------------------",file=r)
+
+    print("\nAccuracy:", accuracy,file=r)
+    print("Precision:", precision,file=r)
+    print("Recall:", recall,file=r)
+
+    print("\n--------------------------------------------------\n",file=r)
+
+    print(cm_df,file=r)
