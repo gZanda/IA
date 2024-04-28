@@ -4,6 +4,9 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score, precision_score, recall_score
 
+# Print the header
+print("\n###--- KNN ---###\n")
+
 # Load the CSV
 df = pd.read_csv('iris.csv')
 
@@ -68,4 +71,4 @@ cm = confusion_matrix(true_labels, predicted_labels)
 cm_df = pd.DataFrame(cm, index=df['Species'].unique(), columns=df['Species'].unique())
 print("\nConfusion Matrix:")
 print(cm_df)
-print("/n")
+print("\n")

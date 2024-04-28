@@ -4,6 +4,9 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix
 
+# Print the header
+print("###--- MLP ---###\n")
+
 # Load the CSV
 df = pd.read_csv('iris.csv')
 
@@ -65,4 +68,4 @@ cm = confusion_matrix(true_labels, predicted_labels)
 cm_df = pd.DataFrame(cm, index=df['Species'].unique(), columns=df['Species'].unique())
 print("\nConfusion Matrix:")
 print(cm_df)
-print("/n")
+print("\n")
