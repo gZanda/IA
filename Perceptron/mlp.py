@@ -4,7 +4,7 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix
 
-# Print the header
+# Title
 print("###--- MLP ---###\n")
 
 # Load the CSV
@@ -27,7 +27,7 @@ y_train = df_train['Species']
 X_test = df_test[['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm']]
 y_test = df_test['Species']
 
-# Convert categorical labels to numerical labels
+# Convert categorical labels to numerical labels ( algorithm requirement )
 le = LabelEncoder()
 y_train = le.fit_transform(y_train)
 y_test = le.transform(y_test)
@@ -35,10 +35,10 @@ y_test = le.transform(y_test)
 # Initialize the MLP classifier
 mlp_classifier = MLPClassifier(hidden_layer_sizes=(100,), max_iter=1000)
 
-# Train the classifier
+# Train
 mlp_classifier.fit(X_train, y_train)
 
-# Get predictions and place them in a new column
+# Predict
 y_pred = mlp_classifier.predict(X_test)
 
 # Print the DataFrame with predictions
@@ -51,7 +51,7 @@ accuracy = accuracy_score(y_test, y_pred)
 precision = precision_score(y_test, y_pred, average='macro')
 recall = recall_score(y_test, y_pred, average='macro')
 
-# Line
+
 print("\n--------------------------------------------------")
 
 # Write performance metrics

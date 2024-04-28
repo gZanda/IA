@@ -4,7 +4,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score, precision_score, recall_score
 
-# Print the header
+# Title
 print("\n###--- KNN ---###\n")
 
 # Load the CSV
@@ -27,7 +27,7 @@ y_train = df_train['Species']
 X_test = df_test[['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm']]
 y_test = df_test['Species']
 
-# Initialize with k 
+# Number of neighbors
 knn = KNeighborsClassifier(5)
 
 # Train
@@ -39,12 +39,6 @@ y_pred = knn.predict(X_test)
 # Add predictions to a new column 
 df_test['Predicted_Species'] = y_pred
 
-# Confusion Matrix
-true_labels = df_test['Species']
-predicted_labels = df_test['Predicted_Species']
-cm = confusion_matrix(true_labels, predicted_labels)
-cm_df = pd.DataFrame(cm, index=df['Species'].unique(), columns=df['Species'].unique())
-
 # Print the DataFrame with predictions
 selected_columns = df_test[['Id', 'Species', 'Predicted_Species']]
 print(selected_columns.to_string(index=False))
@@ -54,7 +48,7 @@ accuracy = accuracy_score(y_test, y_pred)
 precision = precision_score(y_test, y_pred, average='macro')
 recall = recall_score(y_test, y_pred, average='macro')
 
-# Line
+
 print("\n--------------------------------------------------")
 
 # Write performance metrics
