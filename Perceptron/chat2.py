@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import confusion_matrix
+from sklearn.neural_network import MLPClassifier
+from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score, precision_score, recall_score
 
 # Load the CSV
@@ -16,7 +16,7 @@ df_shuffled = df.sample(frac=1, random_state=SEED).reset_index(drop=True)
 df_train = df_shuffled.iloc[:120].copy()
 df_test = df_shuffled.iloc[120:].copy()
 
-# Feeatures / Target for TRAIN
+# Features / Target for TRAIN
 X_train = df_train[['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm']]
 y_train = df_train['Species']
 
@@ -24,26 +24,22 @@ y_train = df_train['Species']
 X_test = df_test[['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm']]
 y_test = df_test['Species']
 
-# Initialize with k 
-k = 5
-knn = KNeighborsClassifier( n_neighbors=k )
+# Convert categorical labels to numerical labels
+le = LabelEncoder()
+y_train = le.fit_transform(y_train)
+y_test = le.transform(y_test)
 
-# Train
-knn.fit(X_train, y_train)
+# Initialize the MLP classifier
+mlp_classifier = MLPClassifier(hidden_layer_sizes=(100,), max_iter=1000)
 
-# Predict
-y_pred = knn.predict(X_test)
+# Train the classifier
+mlp_classifier.fit(X_train, y_train)
 
-# Add predictions to a new column 
-df_test['Predicted_Species'] = y_pred
-
-# Confusion Matrix
-true_labels = df_test['Species']
-predicted_labels = df_test['Predicted_Species']
-cm = confusion_matrix(true_labels, predicted_labels)
-cm_df = pd.DataFrame(cm, index=df['Species'].unique(), columns=df['Species'].unique())
+# Get predictions and place them in a new column
+y_pred = mlp_classifier.predict(X_test)
 
 # Print the DataFrame with predictions
+df_test['Predicted_Species'] = le.inverse_transform(y_pred)
 selected_columns = df_test[['Id', 'Species', 'Predicted_Species']]
 print(selected_columns.to_string(index=False))
 
@@ -59,3 +55,5 @@ print("\n--------------------------------------------------")
 print("\nAccuracy:", accuracy)
 print("Precision:", precision)
 print("Recall:", recall)
+
+
