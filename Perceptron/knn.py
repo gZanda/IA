@@ -25,8 +25,7 @@ X_test = df_test[['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthC
 y_test = df_test['Species']
 
 # Initialize with k 
-k = 5
-knn = KNeighborsClassifier( n_neighbors=k )
+knn = KNeighborsClassifier(5)
 
 # Train
 knn.fit(X_train, y_train)
@@ -59,3 +58,14 @@ print("\n--------------------------------------------------")
 print("\nAccuracy:", accuracy)
 print("Precision:", precision)
 print("Recall:", recall)
+
+print("\n--------------------------------------------------")
+
+# Confusion Matrix
+true_labels = df_test['Species']
+predicted_labels = df_test['Predicted_Species']
+cm = confusion_matrix(true_labels, predicted_labels)
+cm_df = pd.DataFrame(cm, index=df['Species'].unique(), columns=df['Species'].unique())
+print("\nConfusion Matrix:")
+print(cm_df)
+print("/n")
