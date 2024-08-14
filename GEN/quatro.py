@@ -5,9 +5,9 @@ population_size = 4
 mutation_rate = 0.01
 crossover_rate = 0.7
 generations = 5
-gene_length = 5  # Número de bits necessário para representar 21 valores
+gene_length = 5  # Número de bits
 
-# Função a ser otimizada
+# Função a encontrar o máximo
 def f(x):
     return x**2 - 3*x + 4
 
@@ -79,7 +79,7 @@ for generation in range(generations):
         child1, child2 = crossover(parent1, parent2, crossover_rate)
         child1 = mutation(child1, mutation_rate)
         child2 = mutation(child2, mutation_rate)
-        new_population.extend([child1, child2]) # População formada por filhos
+        new_population.extend([child1, child2]) # População formada por FILHOS
         # print([decode_individual(ind) for ind in new_population])
     population = new_population
     
