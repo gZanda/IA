@@ -32,7 +32,8 @@ def random_individual(length):
 
 # Criação da população inicial
 population = [random_individual(gene_length) for _ in range(population_size)]
-print(population)
+#print(population)
+print("Geração Zero ->",[decode_individual(ind) for ind in population]) # POPULAÇÃO INICIAL
 
 # Função de Seleção por Torneio
 def tournament_selection(population, fitness_values, tournament_size=3):
@@ -79,13 +80,10 @@ for generation in range(generations):
         child1 = mutation(child1, mutation_rate)
         child2 = mutation(child2, mutation_rate)
         new_population.extend([child1, child2]) # População formada por filhos
+        # print([decode_individual(ind) for ind in new_population])
     population = new_population
     
     # Melhor indivíduo da geração
     best_individual = max(population, key=lambda ind: fitness(ind))
     best_fitness = fitness(best_individual)
     print(f"Geração {generation + 1}: Melhor Aptidão = {best_fitness}, Melhor Indivíduo = {best_individual}, Valor x = {decode_individual(best_individual)}")
-
-# Melhor indivíduo após todas as gerações
-best_individual = max(population, key=lambda ind: fitness(ind))
-best_fitness = fitness(best_individual)
